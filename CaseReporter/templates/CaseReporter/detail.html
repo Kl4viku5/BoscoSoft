@@ -1,0 +1,13 @@
+{% extends 'CaseReporter/base.html' %}
+{% block content %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="container">
+    <div class="row">
+        <div class="col sm-4">
+            <p>Nom : {{ individual.name }}</p>
+            <p>Description : {{ individual.description }}</p>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

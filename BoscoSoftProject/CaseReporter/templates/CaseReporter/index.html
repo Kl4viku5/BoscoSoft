@@ -1,0 +1,58 @@
+{% extends 'CaseReporter/base.html' %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            {% if latest_individual_list %}
+                <tr>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Description</th>
+                </tr>
+                {% for individual in latest_individual_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'CaseReporter:detail' individual.id %}">{{ individual.name }}</a>
+                        </td>
+                        <td>
+                            {{ individual.age }}
+                        </td>
+                        <td>
+                            {{ individual.description|truncatechars:100 }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>Aucun individu n'est répertorié.</p>
+            {% endif %}
+        </table>
+    </div>
+     
+    <div class="row">
+        <input class="btn-default" type="button" value="Rechercher" onclick="overlay()">
+    </div>
+    <div id="overlay">
+        <div id="overlay_content">
+            <form>
+                {% csrf_token %}
+                <div class="row">
+                    <span>Veuillez entrer les critères de la recherche</span>
+                </div>
+                <div class="row">
+                    <label>Nom :</label>
+                    <input type="text">
+                </div>
+                <div class="row">
+                    <label>Age :</label>
+                    <input type="number">
+                </div>
+                <input class="btn-default" type="submit" value="Soumettre">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function overlay() {
+            var el = document.getElementById("overlay");
+            el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+        }
+    </script>
+{% endblock %}

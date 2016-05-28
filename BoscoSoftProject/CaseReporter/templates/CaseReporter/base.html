@@ -5,37 +5,26 @@
     {% load staticfiles %}
     <link href="{% static 'CaseReporter/bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'CaseReporter/bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'CaseReporter/style.css' %}"/>
+    <link href="{% static 'CaseReporter/style.css' %}" rel="stylesheet" type="text/css">
     <title>BoscoSoft : Module de gestion des cas</title>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default mainnavbar" id="mainnavbar">
     <a class="navbar-brand" href="#">BoscoSoft</a>
     <ul class="nav navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'CaseReporter:index' %}">Acceuil</a>
+            <a class="nav-link" href="{% url 'CaseReporter:index' %}">Recherche</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">À propos</a>
         </li>
     </ul>
 </nav>
+
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a class="nav-link" href="#">Individu</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#">Cas</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-9">
-            {% block content %}
-            {% endblock %}
-        </div>
+    <div class="col-sm-9">
+        {% block content %}
+        {% endblock %}
     </div>
 </div>
 <script src="{% static 'CaseReporter/jquery/jquery-2.2.3.js' %}"></script>

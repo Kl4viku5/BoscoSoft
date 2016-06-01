@@ -11,7 +11,7 @@
                 {% for individual in latest_individual_list %}
                     <tr>
                         <td>
-                            <a href="{% url 'CaseReporter:detail' individual.id %}">{{ individual.name }}</a>
+                            <a href="{% url 'ActivityEvaluation:detail' individual.id %}">{{ individual.name }}</a>
                         </td>
                         <td>
                             {{ individual.age }}

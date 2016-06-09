@@ -87,6 +87,26 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
 .idea/
 .Thumbs.db
+
+# User-specific stuff:
+BoscoSoftProject/.idea/*
+
+## File-based project format:
+*.iws
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties

@@ -1,5 +1,5 @@
 from django.views import generic
-from django.utils import timezone
+from django.http import HttpResponseRedirect
 
 from .models import Individual
 
@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_individual_list'
 
     def get_queryset(self):
-        return Individual.objects.order_by('name')[:5]
+        return Individual.objects.order_by('name')[:100]
 
 
 class DetailView(generic.DetailView):

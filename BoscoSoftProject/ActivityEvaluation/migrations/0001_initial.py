@@ -35,6 +35,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='case',
             name='individual',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='CaseReporter.Individual'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ActivityEvaluation.Individual'),
         ),
     ]

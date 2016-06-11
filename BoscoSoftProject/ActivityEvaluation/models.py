@@ -33,9 +33,9 @@ class Evaluation(models.Model):
 
     # Return true if case was published during the last 5 days
     def was_published_recently(self):
-        now = timezone.now
+        now = timezone.now()
         delta = datetime.timedelta(days=5)
-        return now - delta <= self.pubdate <= now
+        return now - delta <= self.pub_date <= now
 
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
@@ -54,8 +54,9 @@ class Question(models.Model):
         return self.description
 
 
-class Answer(models.Model):
+
     """
+    class Answer(models.Model):
     An answer is linked to a question, there can be more than one answer.
     """
 

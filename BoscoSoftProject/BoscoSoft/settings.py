@@ -56,9 +56,9 @@ ROOT_URLCONF = 'BoscoSoft.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 'ActivityEvaluation',
+        'DIRS': [os.path.join(BASE_DIR, 'ActivityEvaluation/templates'),
                  ],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

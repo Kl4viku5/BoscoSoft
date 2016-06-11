@@ -2,27 +2,27 @@
 {% block content %}
     <div class="table-responsive">
         <table class="table">
-            {% if latest_individual_list %}
+            {% if latest_activity_list %}
                 <tr>
                     <th>Nom</th>
                     <th>Age</th>
                     <th>Description</th>
                 </tr>
-                {% for individual in latest_individual_list %}
+                {% for activity in latest_activity_list %}
                     <tr>
                         <td>
-                            <a href="{% url 'ActivityEvaluation:detail' individual.id %}">{{ individual.name }}</a>
+                            <a href="{% url 'ActivityEvaluation:detail' Activity.id %}">{{ activity.name }}</a>
                         </td>
                         <td>
-                            {{ individual.age }}
+                            {{ activity.age }}
                         </td>
                         <td>
-                            {{ individual.description|truncatechars:100 }}
+                            {{ activity.description|truncatechars:100 }}
                         </td>
                     </tr>
                 {% endfor %}
             {% else %}
-                <p>Aucun individu n'est répertorié.</p>
+                <p>Aucun activity n'est répertorié.</p>
             {% endif %}
         </table>
     </div>

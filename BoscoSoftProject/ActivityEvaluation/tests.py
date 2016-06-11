@@ -2,6 +2,7 @@ import datetime
 
 from django.test import TestCase
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 from .models import Evaluation
 
@@ -31,3 +32,10 @@ class EvaluationMethodTests(TestCase):
     def test_was_published_recently_with_recent_question(self):
         recent_evaluation = create_evaluation(hours=-1)
         self.assertEqual(recent_evaluation.was_published_recently(), True)
+
+
+class EvaluationViewTests(TestCase):
+    def test_index_view_with_no_evaluation(self):
+        response = self.client.get(reverse('ActivityEvaluation:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Aucunes activités n'est répertoriées.")

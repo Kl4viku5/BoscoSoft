@@ -27,7 +27,9 @@ class Evaluation(models.Model):
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
-        return self.name
+        name = "Évaluation de l'activité : "
+        name += self.activity.name
+        return name
 
     # Return true if case was published during the last 5 days
     def was_published_recently(self):
@@ -50,5 +52,11 @@ class Question(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Answer(models.Model):
+    """
+    An answer is linked to a question, there can be more than one answer.
+    """
 
 

@@ -5,20 +5,28 @@
             {% if latest_activity_list %}
                 <tr>
                     <th>Nom</th>
-                    <th>Age</th>
                     <th>Description</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Consulter</th>
                 </tr>
                 {% for activity in latest_activity_list %}
                     <tr>
                         <td>
-                            <a href="{% url 'ActivityEvaluation:detail' Activity.id %}">{{ activity.name }}</a>
-                        </td>
-                        <td>
-                            {{ activity.age }}
+                            {{ activity.name }}
                         </td>
                         <td>
                             {{ activity.description|truncatechars:100 }}
                         </td>
+                        <td>
+                            {{ activity.start_date }}
+                        </td>
+                        <td>
+                            {{ activity.end_date }}
+                        </td>
+                    <td>
+                        <a class="nav-link" href="{% url 'ActivityEvaluation:activityDetail' activity.id %}">Consulter</a>
+                    </td>
                     </tr>
                 {% endfor %}
             {% else %}

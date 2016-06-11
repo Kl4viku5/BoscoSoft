@@ -3,10 +3,6 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-# Create your models here.
-
-#Represent an Activity
-
 
 class Activity(models.Model):
     """
@@ -44,9 +40,9 @@ class Evaluation(models.Model):
     was_published_recently.short_description = 'Publié récemment'
 
 
-class Subject(models.Model):
+class Question(models.Model):
     """
-    Subject represents the question to wich the user will have to reply
+    Question represents the question to wich the user will have to reply
     to during the evaluation.
     """
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE)

@@ -1,7 +1,8 @@
+'''
 from django.views import generic
 from django.http import HttpResponseRedirect
 
-from .models import Individual
+#from .models import Evaluation
 
 
 class IndexView(generic.ListView):
@@ -15,3 +16,4 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Individual
     template_name = 'CaseReporter/detail.html'
+'''

@@ -6,7 +6,8 @@ from . import views
 app_name = 'ActivityEvaluation'
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)', views.ActivityDetailView.as_view(), name='activityDetail'),
+    url(r'^evaluation/(?P<pk>[0-9]+)', views.EvaluationListView.as_view(), name='EvaluationList'),
+    url(r'^evaluationdetail/(?P<pk>[0-9]+)', views.EvaluationDetail.as_view(), name='EvaluationDetail'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

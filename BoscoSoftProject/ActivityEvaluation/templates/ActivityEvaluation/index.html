@@ -1,5 +1,6 @@
 {% extends 'ActivityEvaluation/base.html' %}
 {% block content %}
+    <h1>Liste des activités</h1>
     <div class="table-responsive">
         <table class="table">
             {% if latest_activity_list %}
@@ -19,13 +20,13 @@
                             {{ activity.description|truncatechars:100 }}
                         </td>
                         <td>
-                            {{ activity.start_date }}
+                            {{ activity.start_date|date:"Y/n/d H:s" }}
                         </td>
                         <td>
-                            {{ activity.end_date }}
+                            {{ activity.end_date|date:"Y/n/d H:s" }}
                         </td>
                     <td>
-                        <a class="nav-link" href="{% url 'ActivityEvaluation:activityDetail' activity.id %}">Consulter</a>
+                        <a class="nav-link" href="{% url 'ActivityEvaluation:EvaluationList' activity.id %}">Consulter</a>
                     </td>
                     </tr>
                 {% endfor %}
@@ -40,18 +41,19 @@
     </div>
     <div id="overlay">
         <div id="overlay_content">
-            <form>
+            <form method="post">
                 {% csrf_token %}
                 <div class="row">
-                    <span>Veuillez entrer les critères de la recherche</span>
+                    <span>Veuillez entrer les critères de la recherche
+                        de l'activité que vous souhaitez trouver</span>
                 </div>
                 <div class="row">
                     <label>Nom :</label>
                     <input type="text">
                 </div>
                 <div class="row">
-                    <label>Age :</label>
-                    <input type="number">
+                    <label>Date de début :</label>
+                    <input type="date">
                 </div>
                 <input class="btn-default" type="submit" value="Soumettre">
             </form>

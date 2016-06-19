@@ -11,8 +11,8 @@ class Activity(models.Model):
     """
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
-    start_date = models.DateTimeField('date published')
-    end_date = models.DateTimeField('date published')
+    start_date = models.DateTimeField('Date de début')
+    end_date = models.DateTimeField('Date de fin')
 
     def __str__(self):
         return self.name
@@ -24,6 +24,7 @@ class Evaluation(models.Model):
     There can be more than one evaluation for an activity.
     """
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000)
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):

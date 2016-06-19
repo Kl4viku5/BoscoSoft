@@ -1,0 +1,32 @@
+{% extends 'ActivityEvaluation/base.html' %}
+{% block content %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h2>Évaluations de l'activité {{ evaluation.activity.name }}</h2>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th>Numéro d'évaluation</th>
+                    <th>Date de création</th>
+                    <th>Date de publication</th>
+                    <th>Consulter</th>
+                </tr>
+                {% for evaluation in latest_evaluation_list %}
+                    <tr>
+                        <td>
+                            {{ evaluation.id }}
+                        </td>
+                        <td>
+                            {{ evaluation.description|truncatechars:100 }}
+                        </td>
+                        <td>
+                            {{ evaluation.pub_date }}
+                        </td>
+                        <td>
+                            <a class="nav-link"
+                               href="{% url 'ActivityEvaluation:EvaluationDetail' evaluation.id %}">Consulter</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}

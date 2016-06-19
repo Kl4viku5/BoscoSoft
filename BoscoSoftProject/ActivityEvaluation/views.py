@@ -22,3 +22,8 @@ class EvaluationListView(generic.ListView):
 class EvaluationDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/EvaluationDetail.html'
     model = Evaluation
+
+
+class ActivityDetail(generic.DetailView):
+    template_name = 'ActivityEvaluation/activity_detail.html'
+    model = Activity

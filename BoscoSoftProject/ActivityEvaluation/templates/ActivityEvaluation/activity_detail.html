@@ -1,11 +1,13 @@
 {% extends 'ActivityEvaluation/base.html' %}
 {% block content %}
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <h2>Fiche de l'activité {{ activity.name }}</h2>
+    <h2>Fiche de l'activité : {{ activity.name }}</h2>
     <div class="row">
         <p>Description : {{ activity.description }}</p>
     </div>
-    <div class="row">
-
+    <div class="row col-lg-12">
+        {% for evaluation in activity.evaluation_set.all %}
+            {% include 'ActivityEvaluation/activity_detail_evaluation.html' %}
+        {% endfor %}
     </div>
 {% endblock %}

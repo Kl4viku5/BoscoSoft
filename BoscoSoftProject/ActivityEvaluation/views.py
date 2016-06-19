@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
 
 
 class EvaluationListView(generic.ListView):
-    template_name = 'ActivityEvaluation/EvaluationList.html'
+    template_name = 'ActivityEvaluation/evaluation_list.html'
     context_object_name = 'latest_evaluation_list'
 
     def get_queryset(self):
@@ -20,7 +20,7 @@ class EvaluationListView(generic.ListView):
 
 
 class EvaluationDetail(generic.DetailView):
-    template_name = 'ActivityEvaluation/EvaluationDetail.html'
+    template_name = 'ActivityEvaluation/evaluation_detail.html'
     model = Evaluation
 
 

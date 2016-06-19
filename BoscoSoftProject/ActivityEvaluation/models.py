@@ -17,6 +17,9 @@ class Activity(models.Model):
     def __str__(self):
         return self.name
 
+    def get_evaluations(self):
+        return Evaluation.objects.Filter(activity=self.id)
+
 
 class Evaluation(models.Model):
     """

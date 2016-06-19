@@ -1,0 +1,10 @@
+{% extends 'ActivityEvaluation/activity_detail.html' %}
+{% block content %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h2>Fiche de l'évaluation {{ evaluation.name }}</h2>
+       <div class="row col-lg-12">
+        {% for question in evaluation.question_set.all %}
+            {% include 'ActivityEvaluation/evaluation_detail_question.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}

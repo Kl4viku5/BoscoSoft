@@ -1,27 +1,7 @@
 {% extends 'ActivityEvaluation/base.html' %}
 {% load staticfiles %}
 {% block content %}
-    <h1>Liste des activités</h1>
-    <div id="overlay">
-        <div id="overlay_content">
-            <form method="post">
-                {% csrf_token %}
-                <div class="row">
-                    <span>Veuillez entrer les critères de la recherche
-                        de l'activité que vous souhaitez trouver</span>
-                </div>
-                <div class="row">
-                    <label>Nom :</label>
-                    <input type="text">
-                </div>
-                <div class="row">
-                    <label>Date de début :</label>
-                    <input type="date">
-                </div>
-                <input class="btn-default" type="submit" value="Soumettre">
-            </form>
-        </div>
-    </div>
+<h1>Liste des activités</h1>
 <div class="table-responsive">
     <table class="table">
         {% if latest_activity_list %}
@@ -60,7 +40,7 @@
 <div class="row">
     <a class="btn btn-default" onclick="overlay('true')">Rechercher</a>
 </div>
-    
+
 <div id="overlay">
     <div id="overlay_content">
         <form>
@@ -83,6 +63,7 @@
         </form>
     </div>
 </div>
+
 {% endblock %}
 {% block scripts %}
 <script type="text/javascript" src="{% static 'ActivityEvaluation/js/activity_evaluation.js' %}"></script>

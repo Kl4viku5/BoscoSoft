@@ -38,10 +38,10 @@
 </div>
  
 <div class="row">
-    <a class="btn btn-default" onclick="overlay('true')">Rechercher</a>
+    <a class="btn btn-default" id="SearchActivities"><i class="fa fa-search"></i>Rechercher</a>
 </div>
 
-<div id="overlay">
+<div id="overlay" class="hide">
     <div id="overlay_content">
         <form>
             {% csrf_token %}

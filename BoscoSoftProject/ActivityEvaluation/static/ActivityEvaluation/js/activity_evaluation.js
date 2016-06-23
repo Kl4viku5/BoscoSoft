@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $("#SearchActivities").click(function () {
+        overlay(true);
+    });
+});
 function overlay(makeVisible) {
     setPopupVisibilityById("overlay", makeVisible);
     /*
@@ -12,9 +17,9 @@ function overlay(makeVisible) {
 function setPopupVisibilityById(id, makeVisible) {
     var el = $("#"+ id);
      if(makeVisible) {
-        el.prop("visibility","visible");
+        el.toggleClass("hide");
     }
     else {
-        el.prop("visibility","hidden");
+        el.toggleClass("hide");
     }
 }

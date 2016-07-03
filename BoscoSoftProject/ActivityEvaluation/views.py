@@ -1,7 +1,13 @@
 from django.views import generic
+from django.shortcuts import render
 
 from .models import Activity, Evaluation
+from .forms import AnswerForm
 
+
+def answer_new(request):
+    form = AnswerForm
+    return render(request, 'ActivityEvaluation/answer_new.html')
 
 class IndexView(generic.ListView):
     template_name = 'ActivityEvaluation/index.html'

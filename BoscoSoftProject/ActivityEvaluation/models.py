@@ -17,9 +17,6 @@ class Activity(models.Model):
     def __str__(self):
         return self.name
 
-    def get_evaluations(self):
-        return Evaluation.objects.Filter(activity=self.id)
-
 
 class Evaluation(models.Model):
     """
@@ -58,10 +55,12 @@ class Question(models.Model):
         return self.description
 
 
-
+class Answer(models.Model):
     """
-    class Answer(models.Model):
     An answer is linked to a question, there can be more than one answer.
     """
+    question = models.ForeignKey(Question)
+    score = models.IntegerField()
+    explanation = models.CharField(max_length=1000)
 
 

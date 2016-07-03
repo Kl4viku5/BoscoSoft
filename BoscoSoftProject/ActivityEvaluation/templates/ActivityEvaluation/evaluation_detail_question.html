@@ -1,16 +1,6 @@
 {% block content %}
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
     <div class="row">
-        <p>Description : {{ question.description }}</p>
+        <p>{{ question }}</p>
     </div>
-    <form>
-     <span class="input-group">
-            <label class="radio-inline"><input type="radio" name="optradio">Fortement en désaccord</label>
-            <label class="radio-inline"><input type="radio" name="optradio">Plutôt en désaccord</label>
-            <label class="radio-inline"><input type="radio" name="optradio" checked>Sans opinion</label>
-            <label class="radio-inline"><input type="radio" name="optradio">Plutôt d’accord</label>
-            <label class="radio-inline"><input type="radio" name="optradio">Fortement d’accord</label>
-     </span>
-    </form>
 {% endblock %}

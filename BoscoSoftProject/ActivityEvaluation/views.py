@@ -1,13 +1,21 @@
 from django.views import generic
 from django.shortcuts import render
 
-from .models import Activity, Evaluation
+from .models import Activity, Evaluation, Answer, Question
 from .forms import AnswerForm
 
 
 def answer_new(request):
-    form = AnswerForm
-    return render(request, 'ActivityEvaluation/answer_new.html')
+    form = AnswerForm()
+    return render(request, 'ActivityEvaluation/answer_new.html', {'form': form})
+
+
+def answer_new_with_question_id(request, question_pk):
+    form = AnswerForm()
+    question = Question.objects.get(pk=question_pk)
+    answer = Answer(question=question)
+    return render(request, 'ActivityEvaluation/answer_new.html', {'form': form, 'answer': answer})
+
 
 class IndexView(generic.ListView):
     template_name = 'ActivityEvaluation/index.html'

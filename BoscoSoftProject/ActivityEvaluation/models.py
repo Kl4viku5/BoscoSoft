@@ -59,8 +59,13 @@ class Answer(models.Model):
     """
     An answer is linked to a question, there can be more than one answer.
     """
-    question = models.ForeignKey(Question)
-    score = models.IntegerField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     explanation = models.CharField(max_length=1000)
-
+    CHOICES = (
+        (0, "Fortement en désaccord"),
+        (1, "Plutôt en désaccord"),
+        (2, "Sans opinion"),
+        (3, "Plutôt d’accord"),
+        (4, "Fortement d’accord"),
+    )
 

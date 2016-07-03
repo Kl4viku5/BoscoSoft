@@ -2,5 +2,11 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <div class="row">
         <p>{{ question }}</p>
+        <!--
+                <form method="POST" class="post-form">{% csrf_token %}
+                <button type="submit" class="save btn btn-default">Save</button>
+                -->
+        <a class="nav-link" href="{% url 'ActivityEvaluation:evaluation_answers_new_with_question_id' question.id %}">Voter</a>
+        </form>
     </div>
 {% endblock %}

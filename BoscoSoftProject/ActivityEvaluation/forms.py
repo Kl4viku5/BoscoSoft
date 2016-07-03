@@ -3,8 +3,5 @@ from django import forms
 from .models import Answer
 
 
-class AnswerForm(forms.ModelForm):
-
-    class Meta:
-        model = Answer
-        fields = ('score',)
+class AnswerForm(forms.Form):
+    choices = forms.ChoiceField(widget=forms.RadioSelect, choices=Answer.CHOICES)

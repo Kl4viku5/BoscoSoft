@@ -1,5 +1,5 @@
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Activity, Evaluation, Answer, Question
 from .forms import AnswerForm
@@ -36,6 +36,10 @@ class EvaluationListView(generic.ListView):
 class EvaluationDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/evaluation_detail.html'
     model = Evaluation
+
+    def post(self, request, *args, **kwargs):
+        evaluationid = request.POST['evaluationid']
+        return redirect('/ActivityEvaluation')
 
 
 class ActivityDetail(generic.DetailView):

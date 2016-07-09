@@ -47,6 +47,12 @@ class EvaluationDetail(generic.DetailView):
         return redirect('/ActivityEvaluation')
 
 
+class EvaluationCreation(generic.CreateView):
+    template_name = 'ActivityEvaluation/evaluation_creation.html'
+    model = Evaluation
+    fields = ('activity', 'description')
+
+
 class ActivityDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/activity_detail.html'
     model = Activity

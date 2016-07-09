@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $("#SearchActivities").click(function () {
         overlay(true);
     });
@@ -6,17 +6,17 @@ $(document).ready(function() {
 function overlay(makeVisible) {
     setPopupVisibilityById("overlay", makeVisible);
     /*
-    if(makeVisible) {
-        el.style.visibility = "visible";
-    }
-    else {
-        el.style.visibility = "hidden";
-    }
-    */
+     if(makeVisible) {
+     el.style.visibility = "visible";
+     }
+     else {
+     el.style.visibility = "hidden";
+     }
+     */
 }
 function setPopupVisibilityById(id, makeVisible) {
-    var el = $("#"+ id);
-     if(makeVisible) {
+    var el = $("#" + id);
+    if (makeVisible) {
         el.toggleClass("hide");
     }
     else {

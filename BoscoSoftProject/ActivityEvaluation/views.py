@@ -50,9 +50,21 @@ class EvaluationDetail(generic.DetailView):
 class EvaluationCreation(generic.CreateView):
     template_name = 'ActivityEvaluation/evaluation_creation.html'
     model = Evaluation
-    fields = ('activity', 'description')
+    fields = ['activity', 'description']
 
 
 class ActivityDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/activity_detail.html'
     model = Activity
+
+
+class ActivityCreation(generic.CreateView):
+    template_name = 'ActivityEvaluation/activity_creation.html'
+    model = Activity
+    fields = ['name', 'description', 'start_date', 'end_date']
+
+    def get_form(self, form_class):
+        form = super(ActivityCreation, self).get_form(form_class)
+        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+        return form

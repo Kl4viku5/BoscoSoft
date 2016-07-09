@@ -10,4 +10,7 @@
             {% include 'ActivityEvaluation/activity_detail_evaluation.html' %}
         {% endfor %}
     </div>
+    <div class="row">
+        <a class="btn btn-default" href="{% url 'ActivityEvaluation:evaluation_creation' %}">Créer</a>
+    </div>
 {% endblock %}

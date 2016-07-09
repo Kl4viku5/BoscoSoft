@@ -32,6 +32,10 @@ urlpatterns = [
     url(r'^evaluation_creation$',
         views.EvaluationCreation.as_view(),
         name='evaluation_creation'),
+
+    url(r'^activity_creation$',
+        views.ActivityCreation.as_view(),
+        name='activity_creation'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -8,11 +8,24 @@
             {% for question in evaluation.question_set.all %}
                 <p>Question {{ question }}</p>
                 <div class="row">
-                    <input type="radio" name="question{{ question.id }}" value="0"> Fortement en désaccord<br>
-                    <input type="radio" name="question{{ question.id }}" value="1"> Plutôt en désaccord<br>
-                    <input type="radio" name="question{{ question.id }}" value="2"> Sans opinion<br>
-                    <input type="radio" name="question{{ question.id }}" value="2"> Plutôt d’accord<br>
-                    <input type="radio" name="question{{ question.id }}" value="2"> Fortement d’accord<br>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="0"> Fortement en
+                            désaccord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="1"> Plutôt en désaccord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="2"> Sans opinion</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="3"> Plutôt d’accord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="4"> Fortement d’accord</label>
+                    </div>
+                    <label for="answerTextForQuestion {{ question.id }}">Explication : </label>
+                    <textarea class="form-control" id="answerTextForQuestion {{ question.id }}"></textarea>
                 </div>
             {% endfor %}
             <button type="submit" class="save btn btn-default">Save</button>

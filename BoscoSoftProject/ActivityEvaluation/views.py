@@ -39,6 +39,11 @@ class EvaluationDetail(generic.DetailView):
 
     def post(self, request, *args, **kwargs):
         evaluationid = request.POST['evaluationid']
+        questions = Question.objects.filter(evaluation=evaluationid)
+        for question in questions:
+            value = request.POST['question' + str(question.id)]
+            answer = Answer(question=question, explanation="asdasfasdasd", score=value)
+            answer.save()
         return redirect('/ActivityEvaluation')
 
 

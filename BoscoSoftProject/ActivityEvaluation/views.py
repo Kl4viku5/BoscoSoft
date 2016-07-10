@@ -58,13 +58,25 @@ class ActivityDetail(generic.DetailView):
     model = Activity
 
 
-class ActivityCreation(generic.CreateView):
-    template_name = 'ActivityEvaluation/activity_creation.html'
+class ActivityCreate(generic.CreateView):
+    template_name = 'ActivityEvaluation/activity_form.html'
     model = Activity
     fields = ['name', 'description', 'start_date', 'end_date']
 
-    def get_form(self, form_class):
-        form = super(ActivityCreation, self).get_form(form_class)
+    def get_form(self):
+        form = super(ActivityCreate, self).get_form()
+        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+        return form
+
+
+class ActivityUpdate(generic.UpdateView):
+    template_name = 'ActivityEvaluation/activity_update_form.html'
+    model = Activity
+    fields = ['name', 'description', 'start_date', 'end_date']
+
+    def get_form(self):
+        form = super(ActivityUpdate, self).get_form()
         form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
         form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
         return form

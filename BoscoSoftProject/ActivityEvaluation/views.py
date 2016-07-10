@@ -80,3 +80,8 @@ class ActivityUpdate(generic.UpdateView):
         form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
         form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
         return form
+
+
+class ActivityDelete(generic.DeleteView):
+    model = Activity
+    success_url = '/ActivityEvaluation'

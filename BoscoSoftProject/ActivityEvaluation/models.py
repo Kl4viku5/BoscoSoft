@@ -61,6 +61,7 @@ class Answer(models.Model):
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     explanation = models.CharField(max_length=1000)
+    score = models.IntegerField()
     CHOICES = (
         (0, "Fortement en désaccord"),
         (1, "Plutôt en désaccord"),
@@ -69,3 +70,5 @@ class Answer(models.Model):
         (4, "Fortement d’accord"),
     )
 
+    def __str__(self):
+        return "Réponse de la question : " + self.question.description + " Activité : " + str(self.id)

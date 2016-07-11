@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $(document).ready(function() {
     $("#Search-Activities").click(function () {
         toggleClassById("overlay", "hide");

@@ -1,33 +1,34 @@
 {% extends 'ActivityEvaluation/activity_detail.html' %}
 {% block content %}
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<h2>Fiche de l'évaluation {{ evaluation.name }}</h2>
-<div class="row col-lg-12">
-    <form method="POST" class="post-form">{% csrf_token %}
-        <input type="hidden" name="evaluationid" value="{{ evaluation.id }}">
-        <hr />
-        {% for question in evaluation.question_set.all %}
-        <p class="h5">Question {{ question }}</p>
-        <div class="row">
-            <label class="checkbox-inline">
-                <input type="radio" name="question{{ question.id }}" value="0"> tres bien
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="question{{ question.id }}" value="1"> bien
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="question{{ question.id }}" value="2"> neutre
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="question{{ question.id }}" value="3"> mauvais
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="question{{ question.id }}" value="4"> tres mauvais
-            </label>
-        </div>
-        <hr />
-        {% endfor %}
-        <button type="submit" class="save btn btn-info"><i class="glyphicon glyphicon-save"></i> Save</button>
-    </form>
-</div>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h2>Fiche de l'évaluation {{ evaluation.name }}</h2>
+    <div class="row col-lg-12">
+        <form method="POST" class="post-form">{% csrf_token %}
+            <input type="hidden" name="evaluationid" value="{{ evaluation.id }}">
+            {% for question in evaluation.question_set.all %}
+                <p>Question {{ question }}</p>
+                <div class="row">
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="0"> Fortement en
+                            désaccord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="1"> Plutôt en désaccord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="2"> Sans opinion</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="3"> Plutôt d’accord</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id="question{{ question.id }}" value="4"> Fortement d’accord</label>
+                    </div>
+                    <label for="answerTextForQuestion {{ question.id }}">Explication : </label>
+                    <textarea class="form-control" id="answerTextForQuestion {{ question.id }}"></textarea>
+                </div>
+            {% endfor %}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
 {% endblock %}

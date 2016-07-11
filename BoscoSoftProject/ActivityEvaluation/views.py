@@ -39,9 +39,49 @@ class EvaluationDetail(generic.DetailView):
 
     def post(self, request, *args, **kwargs):
         evaluationid = request.POST['evaluationid']
+        questions = Question.objects.filter(evaluation=evaluationid)
+        for question in questions:
+            value = request.POST['question' + str(question.id)]
+            answer = Answer(question=question, explanation="asdasfasdasd", score=value)
+            answer.save()
         return redirect('/ActivityEvaluation')
+
+
+class EvaluationCreation(generic.CreateView):
+    template_name = 'ActivityEvaluation/evaluation_creation.html'
+    model = Evaluation
+    fields = ['activity', 'description']
 
 
 class ActivityDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/activity_detail.html'
     model = Activity
+
+
+class ActivityCreate(generic.CreateView):
+    template_name = 'ActivityEvaluation/activity_form.html'
+    model = Activity
+    fields = ['name', 'description', 'start_date', 'end_date']
+
+    def get_form(self):
+        form = super(ActivityCreate, self).get_form()
+        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+        return form
+
+
+class ActivityUpdate(generic.UpdateView):
+    template_name = 'ActivityEvaluation/activity_update_form.html'
+    model = Activity
+    fields = ['name', 'description', 'start_date', 'end_date']
+
+    def get_form(self):
+        form = super(ActivityUpdate, self).get_form()
+        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+        return form
+
+
+class ActivityDelete(generic.DeleteView):
+    model = Activity
+    success_url = '/ActivityEvaluation'

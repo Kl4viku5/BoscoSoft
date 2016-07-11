@@ -1,0 +1,13 @@
+{% extends 'ActivityEvaluation/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Modification d'une activité.</h1>
+    <form action="" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update"/>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker();
+        });</script>
+{% endblock %}

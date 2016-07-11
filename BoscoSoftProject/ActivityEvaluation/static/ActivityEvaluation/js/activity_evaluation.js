@@ -1,25 +1,20 @@
 $(document).ready(function() {
-    $("#SearchActivities").click(function () {
-        overlay(true);
+    $("#Search-Activities").click(function () {
+        toggleClassById("overlay", "hide");
+    });
+    $("#Close-search").click(function() {
+        toggleClassById("overlay", "hide");
+        clearInputTextById("Search-age");
+        clearInputTextById("Search-name");
     });
 });
-function overlay(makeVisible) {
-    setPopupVisibilityById("overlay", makeVisible);
-    /*
-    if(makeVisible) {
-        el.style.visibility = "visible";
-    }
-    else {
-        el.style.visibility = "hidden";
-    }
-    */
+
+function toggleClassById(id, className) {
+    var elementToToggle = $("#"+ id);
+    elementToToggle.toggleClass(className);
 }
-function setPopupVisibilityById(id, makeVisible) {
-    var el = $("#"+ id);
-     if(makeVisible) {
-        el.toggleClass("hide");
-    }
-    else {
-        el.toggleClass("hide");
-    }
+
+function clearInputTextById(id) {
+    var inputTextToClear = $("#" + id);
+    inputTextToClear.val("");
 }

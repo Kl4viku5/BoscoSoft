@@ -1,7 +1,7 @@
 {% extends 'ActivityEvaluation/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<h1>Liste des activités</h1>
+<h1>Liste des activités</h1> <a class="btn btn-success" href="#"><i class="glyphicon glyphicon-plus"></i>New</a>
 <div class="table-responsive">
     <table class="table">
         {% if latest_activity_list %}
@@ -38,7 +38,7 @@
 </div>
  
 <div class="row">
-    <a class="btn btn-default" id="SearchActivities"><i class="fa fa-search"></i>Rechercher</a>
+    <a class="btn btn-default" id="Search-Activities"><i class="fa fa-search"></i>Rechercher</a>
 </div>
 
 <div id="overlay" class="hide">
@@ -50,15 +50,15 @@
             </div>
             <div class="row">
                 <div class="col-md-3"><label>Nom :</label></div>
-                <div class="col-md-9 text-left"><input name="name" type="text"/></div>
+                <div class="col-md-9 text-left"><input id="Search-name" name="name" type="text"/></div>
             </div>
             <div class="row">
                 <div class="col-md-3"><label>Age :</label></div>
-                <div class="col-md-9 text-left"><input name="age" type="number"/></div>
+                <div class="col-md-9 text-left"><input id="Search-age" name="age" type="number"/></div>
             </div>
             <div class="row">
                 <input class="btn btn-success" type="submit" value="Soumettre">
-                <a id="Close-search" class="btn btn-danger" onclick="overlay('false')">Annuler</a>
+                <a id="Close-search" class="btn btn-danger">Annuler</a>
             </div>
         </form>
     </div>

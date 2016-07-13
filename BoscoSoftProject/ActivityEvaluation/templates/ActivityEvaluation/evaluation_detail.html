@@ -5,8 +5,9 @@
     <div class="row col-lg-12">
         <form method="POST" class="post-form">{% csrf_token %}
             <input type="hidden" name="evaluationid" value="{{ evaluation.id }}">
+            <hr />
             {% for question in evaluation.question_set.all %}
-                <p>Question {{ question }}</p>
+                <p class="h4">Question {{ question }}</p>
                 <div class="row">
                     <div class="radio">
                         <label><input type="radio" id="question{{ question.id }}" value="0"> Fortement en
@@ -27,6 +28,7 @@
                     <label for="answerTextForQuestion {{ question.id }}">Explication : </label>
                     <textarea class="form-control" id="answerTextForQuestion {{ question.id }}"></textarea>
                 </div>
+            <hr />
             {% endfor %}
             <button type="submit" class="save btn btn-default">Save</button>
         </form>

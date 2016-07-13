@@ -1,7 +1,7 @@
 {% extends 'ActivityEvaluation/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<h1>Liste des activités</h1> <a class="btn btn-success" href="#"><i class="glyphicon glyphicon-plus"></i>New</a>
+<h1>Liste des activités</h1> <a class="btn btn-success" href="{% url 'ActivityEvaluation:activity_form' %}"><i class="glyphicon glyphicon-plus"></i>Nouveau</a>
 <div class="table-responsive">
     <table class="table">
         {% if latest_activity_list %}
@@ -10,9 +10,7 @@
             <th>Description</th>
             <th>Date de début</th>
             <th>Date de fin</th>
-            <th>Consulter</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
+            <th></th>
         </tr>
         {% for activity in latest_activity_list %}
         <tr>
@@ -29,13 +27,15 @@
                 {{ activity.end_date }}
             </td>
             <td>
-                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_detail' pk=activity.id %}">Consulter</a>
-            </td>
-        <td>
-                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_update_form' pk=activity.id %}">Modifier</a>
-            </td>
-        <td>
-                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_confirm_delete' pk=activity.id %}">Supprimer</a>
+                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_detail' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-file"></i> Consulter
+                </a>
+                <a class="nav-link text-warning" href="{% url 'ActivityEvaluation:activity_update_form' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-pencil"></i> Modifier
+                </a>
+                <a class="nav-link text-danger" href="{% url 'ActivityEvaluation:activity_confirm_delete' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-minus"></i> Supprimer
+                </a>
             </td>
         </tr>
         {% endfor %}
@@ -46,10 +46,8 @@
 </div>
  
 <div class="row">
-    <a class="btn btn-default" id="Search-Activities"><i class="fa fa-search"></i>Rechercher</a>
-</div>
-<div class="row">
-    <a class="btn btn-default" href="{% url 'ActivityEvaluation:activity_form' %}">Créer</a>
+    <a class="btn btn-info" id="Search-Activities"><i class="glyphicon glyphicon-search"></i> Rechercher</a>
+    <a class="btn btn-primary" href="{% url 'ActivityEvaluation:activity_form' %}"><i class="glyphicon glyphicon-plus"></i> Créer</a>
 </div>
 
 <div id="overlay" class="hide">
@@ -75,7 +73,4 @@
     </div>
 </div>
 
-{% endblock %}
-{% block scripts %}
-<script type="text/javascript" src="{% static 'ActivityEvaluation/js/activity_evaluation.js' %}"></script>
 {% endblock %}

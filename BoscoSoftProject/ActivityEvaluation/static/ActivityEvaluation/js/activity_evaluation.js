@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(document).ready(function() {
     $("#Search-Activities").click(function () {
         toggleClassById("overlay", "hide");
@@ -7,6 +6,9 @@ $(document).ready(function() {
         toggleClassById("overlay", "hide");
         clearInputTextById("Search-age");
         clearInputTextById("Search-name");
+    });
+    $(function () {
+        $(".datepicker").datepicker();
     });
 });
 

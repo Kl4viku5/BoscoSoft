@@ -17,14 +17,6 @@ def answer_new_with_question_id(request, question_pk):
     return render(request, 'ActivityEvaluation/answer_new.html', {'form': form, 'answer': answer})
 
 
-class IndexView(generic.ListView):
-    template_name = 'ActivityEvaluation/index.html'
-    context_object_name = 'latest_activity_list'
-
-    def get_queryset(self):
-        return Activity.objects.order_by('name')[:100]
-
-
 class EvaluationListView(generic.ListView):
     template_name = 'ActivityEvaluation/evaluation_list.html'
     context_object_name = 'latest_evaluation_list'
@@ -47,10 +39,18 @@ class EvaluationDetail(generic.DetailView):
         return redirect('/ActivityEvaluation')
 
 
-class EvaluationCreation(generic.CreateView):
-    template_name = 'ActivityEvaluation/evaluation_creation.html'
+class EvaluationCreate(generic.CreateView):
+    template_name = 'ActivityEvaluation/evaluation_form.html'
     model = Evaluation
-    fields = ['activity', 'description']
+    fields = ['description']
+
+
+class ActivityListView(generic.ListView):
+    template_name = 'ActivityEvaluation/activity_list.html'
+    context_object_name = 'latest_activity_list'
+
+    def get_queryset(self):
+        return Activity.objects.order_by('name')[:100]
 
 
 class ActivityDetail(generic.DetailView):

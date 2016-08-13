@@ -6,12 +6,12 @@ from . import views
 app_name = 'ActivityEvaluation'
 urlpatterns = [
     url(r'^$',
-        views.IndexView.as_view(),
-        name='index'),
+        views.ActivityListView.as_view(),
+        name='activity_list'),
 
     url(r'^evaluation/(?P<pk>[0-9]+)',
         views.EvaluationListView.as_view(),
-        name='EvaluationList'),
+        name='evaluation_list'),
 
     url(r'^evaluation_detail/(?P<pk>[0-9]+)',
         views.EvaluationDetail.as_view(),
@@ -29,9 +29,9 @@ urlpatterns = [
         views.answer_new,
         name='evaluation_answers_new'),
 
-    url(r'^evaluation_creation$',
-        views.EvaluationCreation.as_view(),
-        name='evaluation_creation'),
+    url(r'^evaluation_create/(?P<activity_pk>[0-9]+)',
+        views.EvaluationCreate.as_view(),
+        name='evaluation_form'),
 
     url(r'^activity_creation$',
         views.ActivityCreate.as_view(success_url='/ActivityEvaluation'),

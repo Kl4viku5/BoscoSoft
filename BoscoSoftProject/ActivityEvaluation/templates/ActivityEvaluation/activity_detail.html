@@ -11,6 +11,6 @@
         {% endfor %}
     </div>
     <div class="row">
-        <a class="btn btn-default" href="{% url 'ActivityEvaluation:evaluation_creation' %}">Créer</a>
+        <a class="btn btn-default" href="{% url 'ActivityEvaluation:evaluation_form' activity.id %}">Créer</a>
     </div>
 {% endblock %}

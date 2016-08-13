@@ -1,0 +1,76 @@
+{% extends 'ActivityEvaluation/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<h1>Liste des activités</h1> <a class="btn btn-success" href="{% url 'ActivityEvaluation:activity_form' %}"><i class="glyphicon glyphicon-plus"></i>Nouveau</a>
+<div class="table-responsive">
+    <table class="table">
+        {% if latest_activity_list %}
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th></th>
+        </tr>
+        {% for activity in latest_activity_list %}
+        <tr>
+            <td>
+                {{ activity.name }}
+            </td>
+            <td>
+                {{ activity.description|truncatechars:100 }}
+            </td>
+            <td>
+                {{ activity.start_date }}
+            </td>
+            <td>
+                {{ activity.end_date }}
+            </td>
+            <td>
+                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_detail' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-file"></i> Consulter
+                </a>
+                <a class="nav-link text-warning" href="{% url 'ActivityEvaluation:activity_update_form' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-pencil"></i> Modifier
+                </a>
+                <a class="nav-link text-danger" href="{% url 'ActivityEvaluation:activity_confirm_delete' pk=activity.id %}">
+                    <i class="glyphicon glyphicon-minus"></i> Supprimer
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>Aucunes activités n'est répertoriées.</p>
+        {% endif %}
+    </table>
+</div>
+ 
+<div class="row">
+    <a class="btn btn-info" id="Search-Activities"><i class="glyphicon glyphicon-search"></i> Rechercher</a>
+    <a class="btn btn-primary" href="{% url 'ActivityEvaluation:activity_form' %}"><i class="glyphicon glyphicon-plus"></i> Créer</a>
+</div>
+
+<div id="overlay" class="hide">
+    <div id="overlay_content">
+        <form>
+            {% csrf_token %}
+            <div class="row">
+                <span>Veuillez entrer les critères de la recherche</span>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Nom :</label></div>
+                <div class="col-md-9 text-left"><input id="Search-name" name="name" type="text"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Age :</label></div>
+                <div class="col-md-9 text-left"><input id="Search-age" name="age" type="number"/></div>
+            </div>
+            <div class="row">
+                <input class="btn btn-success" type="submit" value="Soumettre">
+                <a id="Close-search" class="btn btn-danger">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

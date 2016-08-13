@@ -1,0 +1,81 @@
+{% extends 'ActivityEvaluation/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<h1>Liste des activités</h1>
+<div class="table-responsive">
+    <table class="table">
+        {% if latest_activity_list %}
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Consulter</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        {% for activity in latest_activity_list %}
+        <tr>
+            <td>
+                {{ activity.name }}
+            </td>
+            <td>
+                {{ activity.description|truncatechars:100 }}
+            </td>
+            <td>
+                {{ activity.start_date }}
+            </td>
+            <td>
+                {{ activity.end_date }}
+            </td>
+            <td>
+                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_detail' pk=activity.id %}">Consulter</a>
+            </td>
+        <td>
+                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_update_form' pk=activity.id %}">Modifier</a>
+            </td>
+        <td>
+                <a class="nav-link" href="{% url 'ActivityEvaluation:activity_confirm_delete' pk=activity.id %}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>Aucunes activités n'est répertoriées.</p>
+        {% endif %}
+    </table>
+</div>
+ 
+<div class="row">
+    <a class="btn btn-default" id="SearchActivities"><i class="fa fa-search"></i>Rechercher</a>
+</div>
+<div class="row">
+    <a class="btn btn-default" href="{% url 'ActivityEvaluation:activity_form' %}">Créer</a>
+</div>
+
+<div id="overlay" class="hide">
+    <div id="overlay_content">
+        <form>
+            {% csrf_token %}
+            <div class="row">
+                <span>Veuillez entrer les critères de la recherche</span>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Nom :</label></div>
+                <div class="col-md-9 text-left"><input name="name" type="text"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Age :</label></div>
+                <div class="col-md-9 text-left"><input name="age" type="number"/></div>
+            </div>
+            <div class="row">
+                <input class="btn btn-success" type="submit" value="Soumettre">
+                <a id="Close-search" class="btn btn-danger" onclick="overlay('false')">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{% static 'ActivityEvaluation/js/activity_evaluation.js' %}"></script>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 
 from .models import Activity, Evaluation, Answer, Question
-from .forms import AnswerForm
+from .forms import AnswerForm, ActivityForm
 
 
 def answer_new(request):
@@ -15,6 +15,11 @@ def answer_new_with_question_id(request, question_pk):
     question = Question.objects.get(pk=question_pk)
     answer = Answer(question=question)
     return render(request, 'ActivityEvaluation/answer_new.html', {'form': form, 'answer': answer})
+
+
+def activity_new(request):
+    form = ActivityForm()
+    return render(request, 'ActivityEvaluation/activity_form.html', {'form': form})
 
 
 class EvaluationListView(generic.ListView):
@@ -56,30 +61,6 @@ class ActivityListView(generic.ListView):
 class ActivityDetail(generic.DetailView):
     template_name = 'ActivityEvaluation/activity_detail.html'
     model = Activity
-
-
-class ActivityCreate(generic.CreateView):
-    template_name = 'ActivityEvaluation/activity_form.html'
-    model = Activity
-    fields = ['name', 'description', 'start_date', 'end_date']
-
-    def get_form(self):
-        form = super(ActivityCreate, self).get_form()
-        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
-        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
-        return form
-
-
-class ActivityUpdate(generic.UpdateView):
-    template_name = 'ActivityEvaluation/activity_update_form.html'
-    model = Activity
-    fields = ['name', 'description', 'start_date', 'end_date']
-
-    def get_form(self):
-        form = super(ActivityUpdate, self).get_form()
-        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
-        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
-        return form
 
 
 class ActivityDelete(generic.DeleteView):

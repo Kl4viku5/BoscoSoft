@@ -33,13 +33,9 @@ urlpatterns = [
         views.EvaluationCreate.as_view(),
         name='evaluation_form'),
 
-    url(r'^activity_creation$',
-        views.ActivityCreate.as_view(success_url='/ActivityEvaluation'),
+    url(r'^activity/new/$',
+        views.activity_new,
         name='activity_form'),
-
-    url(r'^activity_update/(?P<pk>[0-9]+)$',
-        views.ActivityUpdate.as_view(success_url='/ActivityEvaluation'),
-        name='activity_update_form'),
 
     url(r'^activity_delete/(?P<pk>[0-9]+)$',
         views.ActivityDelete.as_view(),

@@ -40,6 +40,10 @@ urlpatterns = [
     url(r'^activity_delete/(?P<pk>[0-9]+)$',
         views.ActivityDelete.as_view(),
         name='activity_confirm_delete'),
+
+    url(r'^activity_update/(?P<pk>[0-9]+)$',
+        views.activity_update,
+        name='activity_update_form'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

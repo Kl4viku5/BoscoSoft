@@ -18,8 +18,27 @@ def answer_new_with_question_id(request, question_pk):
 
 
 def activity_new(request):
-    form = ActivityForm()
-    return render(request, 'ActivityEvaluation/activity_form.html', {'form': form})
+    if request.method == "POST":
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.save()
+            return redirect('/ActivityEvaluation')
+    else:
+        form = ActivityForm()
+        return render(request, 'ActivityEvaluation/activity_form.html', {'form': form})
+
+
+def activity_update(request, pk):
+    if request.method == "POST":
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.save()
+            return redirect('/ActivityEvaluation')
+    else:
+        form = ActivityForm()
+        return render(request, 'ActivityEvaluation/activity_form.html', {'form': form})
 
 
 class EvaluationListView(generic.ListView):
@@ -35,12 +54,7 @@ class EvaluationDetail(generic.DetailView):
     model = Evaluation
 
     def post(self, request, *args, **kwargs):
-        evaluationid = request.POST['evaluationid']
-        questions = Question.objects.filter(evaluation=evaluationid)
-        for question in questions:
-            value = request.POST['question' + str(question.id)]
-            answer = Answer(question=question, explanation="asdasfasdasd", score=value)
-            answer.save()
+        # TODO POST for evaluations
         return redirect('/ActivityEvaluation')
 
 
@@ -48,6 +62,8 @@ class EvaluationCreate(generic.CreateView):
     template_name = 'ActivityEvaluation/evaluation_form.html'
     model = Evaluation
     fields = ['description']
+
+    def post(self, request, *args, **kwargs):
 
 
 class ActivityListView(generic.ListView):

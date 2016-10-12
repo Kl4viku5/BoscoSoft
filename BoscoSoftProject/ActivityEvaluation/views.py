@@ -63,8 +63,6 @@ class EvaluationCreate(generic.CreateView):
     model = Evaluation
     fields = ['description']
 
-    def post(self, request, *args, **kwargs):
-
 
 class ActivityListView(generic.ListView):
     template_name = 'ActivityEvaluation/activity_list.html'
